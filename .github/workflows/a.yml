@@ -3,7 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # jab bhi main branch pe push hoga
+      - main  # Trigger when code is pushed to main
+
+permissions: 
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
@@ -18,7 +23,7 @@ jobs:
       - name: Upload static site
         uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'
+          path: '.'  # Make sure this points to your build folder (like 'dist', 'build', or '_site')
 
       - name: Deploy to GitHub Pages
         id: deployment
